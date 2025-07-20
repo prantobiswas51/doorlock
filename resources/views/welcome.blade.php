@@ -50,10 +50,9 @@
             @endif
         </header>
 
-        <div class="p-4 text-white">
-            If you want faster communication here is the whatsapp number  +8801823744169
-            I sent the api and parameters , please try to save data from your controller.
-        </div>
+       <div class="p-4 text-white">
+         <a href="{{ route('filament.admin.pages.dashboard') }}">Admin Panel</a>
+       </div>
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->enum('role', ['admin', 'superadmin']);
+            $table->enum('role', ['user','admin', 'superadmin'])->default('user');
             $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
             $table->string('lock_password')->nullable(); // optional manual unlock
             $table->text('fingerprint_data')->nullable();
