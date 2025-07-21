@@ -50,9 +50,9 @@
             @endif
         </header>
 
-       <div class="p-4 text-white">
-         <a href="{{ route('filament.admin.pages.dashboard') }}">Admin Panel</a>
-       </div>
+        <div class="p-4 text-white">
+            <a href="{{ route('filament.admin.pages.dashboard') }}">Admin Panel</a>
+        </div>
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>

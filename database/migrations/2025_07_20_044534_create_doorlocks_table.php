@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('doorlocks', function (Blueprint $table) {
             $table->id();
-            $table->string('identification'); // like "Main Gate Lock"
-            $table->string('api_key')->unique(); // used for API verification
+            $table->string('identification_id'); // like "Main Gate Lock"
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

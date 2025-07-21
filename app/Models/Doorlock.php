@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Fingerprint;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -9,7 +10,7 @@ class Doorlock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['identification', 'api_key', 'company_id'];
+    protected $fillable = ['identification_id', 'api_key', 'company_id'];
 
     public function company()
     {
@@ -21,8 +22,8 @@ class Doorlock extends Model
         return $this->belongsToMany(User::class, 'doorlock_access');
     }
 
-    public function transactions()
+    public function Fingerprint()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Fingerprint::class);
     }
 }

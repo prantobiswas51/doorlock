@@ -6,26 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
-        Schema::create('pending_fingerprints', function (Blueprint $table) {
+        Schema::create('fingerprints', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('fingerprint_id');
             $table->text('fingerprint_data');
-            $table->string('esp32_id')->nullable();
+            $table->string('doorlock_id')->nullable();
             $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
+            $table->enum('status', ['Pending', 'Approved', 'Rejected']);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
-        Schema::dropIfExists('pending_fingerprints');
+        Schema::dropIfExists('fingerprints');
     }
 };

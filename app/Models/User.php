@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Doorlock::class, 'doorlock_access');
     }
 
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
     protected function casts(): array
     {
         return [
