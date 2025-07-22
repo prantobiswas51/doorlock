@@ -27,13 +27,14 @@ class DoorlockResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('identification_id')->unique()->required(),
+                TextInput::make('serial_number')->unique()->required(),
+                TextInput::make('api_key'),
                 Select::make('company_id')
                     ->label('Company')
                     ->options(
                         Company::pluck('name', 'id')->toArray()
                     )->searchable()->required(),
-
+                TextInput::make('status')
             ]);
     }
 
@@ -41,8 +42,10 @@ class DoorlockResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('identification_id'),
-                TextColumn::make('company_id'),
+                TextColumn::make('serial_number'),
+                TextColumn::make('api_key'),
+                TextColumn::make('company.name'),
+                TextColumn::make('status')
             ])
             ->filters([
                 //

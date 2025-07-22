@@ -25,16 +25,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function accessibleDoorlocks()
-    {
-        return $this->belongsToMany(Doorlock::class, 'doorlock_access');
-    }
-
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
-
+    
     protected function casts(): array
     {
         return [

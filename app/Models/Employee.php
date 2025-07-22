@@ -13,4 +13,9 @@ class Employee extends Model
         'fingerprint_data',
         'image_data',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

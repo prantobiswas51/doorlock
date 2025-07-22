@@ -51,6 +51,7 @@ class UserResource extends Resource
                 TextColumn::make('email'),
                 TextColumn::make('role'),
                 TextColumn::make('company.name'),
+                TextColumn::make('email_verified_at')->label('Verfied'),
             ])
             ->filters([
                 //

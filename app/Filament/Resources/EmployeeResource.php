@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\EmployeeResource\RelationManagers;
+use Filament\Tables\Columns\TextColumn;
 
 class EmployeeResource extends Resource
 {
@@ -32,9 +33,9 @@ class EmployeeResource extends Resource
                     ->options(
                         Company::pluck('name', 'id')->toArray()
                     )->searchable()->required(),
-                TextInput::make('lock_password')->required(),
-                TextInput::make('fingerprint_data')->required(),
-                TextInput::make('image_data')->required(),
+                TextInput::make('lock_password'),
+                TextInput::make('fingerprint_data'),
+                TextInput::make('image_data'),
             ]);
     }
 
@@ -42,7 +43,11 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('company.name'),
+                TextColumn::make('lock_password'),
+                TextColumn::make('fingerprint_data'),
+                TextColumn::make('image_data'),
             ])
             ->filters([
                 //

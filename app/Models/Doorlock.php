@@ -11,7 +11,7 @@ class Doorlock extends Model
     use HasFactory;
 
     protected $fillable = [
-        'identification_id', 
+        'serial_number', 
         'api_key',
         'company_id', 
         'status'
@@ -20,11 +20,6 @@ class Doorlock extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-    public function accessUsers()
-    {
-        return $this->belongsToMany(User::class, 'doorlock_access');
     }
 
    
