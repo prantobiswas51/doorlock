@@ -5,22 +5,20 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Company;
-use App\Models\Doorlock;
+use App\Models\Employee;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\Fingerprint;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\FingerprintResource\Pages;
-use App\Filament\Resources\FingerprintResource\RelationManagers;
-use Filament\Tables\Columns\TextColumn;
+use App\Filament\Resources\EmployeeResource\RelationManagers;
 
-class FingerprintResource extends Resource
+class EmployeeResource extends Resource
 {
-    protected static ?string $model = Fingerprint::class;
+    protected static ?string $model = Employee::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -28,18 +26,15 @@ class FingerprintResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('fingerprint_id'),
-                TextInput::make('fingerprint_data'),
-                Select::make('doorlock_id')
-                    ->label('Doorlock')
-                    ->options(
-                        Doorlock::pluck('identification_id', 'id')->toArray()
-                    )->searchable()->required(),
+                TextInput::make('name')->required(),
                 Select::make('company_id')
                     ->label('Company')
                     ->options(
                         Company::pluck('name', 'id')->toArray()
                     )->searchable()->required(),
+                TextInput::make('lock_password')->required(),
+                TextInput::make('fingerprint_data')->required(),
+                TextInput::make('image_data')->required(),
             ]);
     }
 
@@ -47,10 +42,7 @@ class FingerprintResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('fingerprint_id'),
-                TextColumn::make('fingerprint_data'),
-                TextColumn::make('doorlock.identification_id'),
-                TextColumn::make('company.name'),
+                //
             ])
             ->filters([
                 //
@@ -75,9 +67,9 @@ class FingerprintResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFingerprints::route('/'),
-            'create' => Pages\CreateFingerprint::route('/create'),
-            'edit' => Pages\EditFingerprint::route('/{record}/edit'),
+            'index' => Pages\ListEmployees::route('/'),
+            'create' => Pages\CreateEmployee::route('/create'),
+            'edit' => Pages\EditEmployee::route('/{record}/edit'),
         ];
     }
 }

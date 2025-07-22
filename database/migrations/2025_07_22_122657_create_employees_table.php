@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doorlock_access', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('doorlock_id')->constrained()->onDelete('cascade');
+            $table->string('name')->required();
+            $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('lock_password');
+            $table->text('fingerprint_data')->nullable();
+            $table->text('image_data')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doorlock_access');
+        Schema::dropIfExists('employees');
     }
 };
